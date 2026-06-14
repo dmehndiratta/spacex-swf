@@ -1,0 +1,55 @@
+frozen_at: '2026-06-13'
+subject: SPCX
+benchmark: ^NDX
+ipo_price: 135.0
+first_day_close: 160.95
+notes: Falsifiable Part I calls, frozen at publish. Scored weekly by 30_score.py.
+  Bands are judgemental, not model confidence intervals.
+predictions:
+- id: ret_3m_vs_ndx
+  horizon: 3 months
+  statement: SPCX 3-month total return relative to the Nasdaq-100
+  point_pct: -8.0
+  band_pct:
+  - -25.0
+  - 10.0
+  rationale: Mega-IPO post-debut drift is negative on average (Ritter); reverse-DCF
+    shows price embeds ~56% CAGR — little room for upside surprise near term.
+- id: ret_12m_vs_ndx
+  horizon: 12 months
+  statement: SPCX 12-month total return relative to the Nasdaq-100
+  point_pct: -15.0
+  band_pct:
+  - -45.0
+  - 20.0
+  rationale: Long-run mega-IPO underperformance + lockup supply + valuation gap to
+    a prob-weighted SOTP/DCF of ~$460-530B vs the $1.77T mark.
+- id: lockup_180d_reaction
+  horizon: ~180 days
+  statement: Sign of the abnormal return in the [-2,+5] window around the 180-day
+    lockup expiry
+  point_pct: -6.0
+  band_pct:
+  - -15.0
+  - 2.0
+  rationale: Largest single supply event (~$700B notional, 145 ADV-days); literature
+    finds negative abnormal returns around large unlocks.
+- id: peer_spillover_space
+  horizon: 1 month
+  statement: Mean CAR for listed space/satellite peers over the month after the debut
+  point_pct: 2.0
+  band_pct:
+  - -4.0
+  - 8.0
+  rationale: Positive read-through (sector legitimisation / capital attention) modestly
+    outweighs liquidity diversion in the near term.
+scenario_fan:
+  bull:
+    prob: 0.25
+    ev_bn: 1797.0
+  base:
+    prob: 0.5
+    ev_bn: 478.0
+  bear:
+    prob: 0.25
+    ev_bn: 122.0

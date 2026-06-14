@@ -1,0 +1,2 @@
+# Copy this to config.toml and set the path to your local clone of the Website repo.
+website_root = "D:\\Website"

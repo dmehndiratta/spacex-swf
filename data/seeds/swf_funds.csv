@@ -1,0 +1,10 @@
+# Comparative sovereign / social wealth funds (plan.md §6.1). Sizes are latest-available,
+# rounded $bn, from each fund's annual report / NBIM / APFC / Temasek Review / Future Fund / PIF.
+# Refreshed annually; treated as reference context, not live data.
+fund,country,funding_source,size_bn,distribution_model,governance_lesson
+Norway GPFG (NBIM),Norway,Petroleum revenue,1750,~3%/yr fiscal spending rule into budget,"Arms-length mgmt, broad indexing, ethics council, radical transparency"
+Alaska Permanent Fund,United States (AK),Oil royalties,80,Universal citizen dividend (PFD) annually,Direct dividend builds political durability
+Singapore (Temasek),Singapore,State reserves / surpluses,300,Reinvested; funds budget via NIRC,"Active commercial mandate, insulated from politics"
+Singapore (GIC),Singapore,State reserves,770,Funds budget via NIRC,Long-horizon reserve management
+Australia Future Fund,Australia,Budget surpluses,150,Pre-funds public pension liabilities,Clear narrow mandate
+Saudi PIF,Saudi Arabia,Oil + asset transfers,925,Domestic transformation,Cautionary: concentration + politicization risk

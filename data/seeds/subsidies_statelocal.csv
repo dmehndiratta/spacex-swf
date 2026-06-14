@@ -1,0 +1,11 @@
+# Non-contract public support to the Musk complex (SpaceX + Tesla, for context), curated from
+# Good Jobs First Subsidy Tracker, FCC orders, and public reporting. Values $M, illustrative.
+# entity: SpaceX vs Tesla (Tesla included as Musk-complex context per plan.md §5.1).
+# status: received / rescinded / ongoing.
+entity,program,jurisdiction,amount_m,year,status,note
+SpaceX,Starbase / Boca Chica incentives,Texas (state+local),20,2014,received,Property-tax + grant package around the Starbase launch site.
+SpaceX,FCC RDOF Auction 904 award,Federal (FCC),885.5,2020,rescinded,Awarded 2020 then DENIED/rescinded 2022-23 — public underwriting withdrawn.
+SpaceX,Florida space incentives,Florida,5,2016,received,Launch-pad and infrastructure incentives.
+Tesla,Nevada Gigafactory package,Nevada,1300,2014,received,One of the largest state subsidy packages on record (Musk-complex context).
+Tesla,Buffalo / SolarCity Gigafactory 2,New York,750,2015,received,State-built/owned RiverBend plant leased to Tesla.
+Tesla,ZEV / regulatory-credit revenue (cumulative),Federal/State,9000,2024,received,Cumulative regulatory-credit sales — public policy as a revenue stream (context).

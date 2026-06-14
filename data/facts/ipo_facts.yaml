@@ -1,0 +1,74 @@
+# ipo_facts.yaml — SINGLE SOURCE OF TRUTH for headline numbers.
+# Both the prose (via 50_facts.py -> injected MDX) and the dashboards read from here.
+# NEVER hard-code one of these numbers a second time anywhere else.
+#
+# Every entry: value + unit + source key (see SOURCES.md) + as_of date + verified flag.
+# Verified = cross-checked against >= 2 reputable sources and/or the live ticker in Phase 0/1.
+
+meta:
+  project: "Socializing the Upside: The Record SpaceX IPO and the Case for a Social Wealth Fund"
+  slug: spacex-social-wealth-fund
+  facts_last_verified: 2026-06-13
+  notes: >
+    Figures pulled from launch-week reporting (CNBC, Yahoo Finance, Morningstar, Via Satellite),
+    cross-checked against the live SPCX tape (yfinance, first session 2026-06-12) and the S-1/424B
+    coverage. Re-verify each against the filed prospectus PDF in the Phase 8 honesty pass.
+
+# ---------------------------------------------------------------------------
+# THE OFFERING
+# ---------------------------------------------------------------------------
+offering:
+  ticker: { value: "SPCX", exchange: "Nasdaq", source: cnbc_ipo_takeaways, as_of: 2026-06-12, verified: true }
+  pricing_date:   { value: 2026-06-11, source: cnbc_roadshow, verified: true }
+  first_trade_date: { value: 2026-06-12, source: cnbc_ipo_takeaways, verified: true }
+  ipo_price_usd:  { value: 135.00, source: cnbc_roadshow, verified: true }
+  shares_offered: { value: 555555555, source: cnbc_roadshow, verified: true }
+  gross_proceeds_usd: { value: 75.0e9, note: "555,555,555 x $135 = $74.999...B", source: cnbc_roadshow, verified: true }
+  greenshoe_shares: { value: 83333333, source: cnbc_roadshow, verified: true }
+  greenshoe_proceeds_usd: { value: 11.2e9, source: cnbc_roadshow, verified: true }
+  implied_valuation_usd: { value: 1.77e12, note: "fully-diluted at the $135 strike", source: cnbc_roadshow, verified: true }
+
+# ---------------------------------------------------------------------------
+# FIRST-DAY TRADING (the debut session, 2026-06-12)
+# ---------------------------------------------------------------------------
+first_day:
+  open_usd:        { value: 150.00, source: cnbc_ipo_takeaways, verified: true, cross_check: yfinance_spcx }
+  close_usd:       { value: 160.95, source: cnbc_ipo_takeaways, verified: true, cross_check: yfinance_spcx }
+  close_pct_vs_ipo: { value: 0.192, note: "+19.2% vs $135 IPO price", source: cnbc_ipo_takeaways, verified: true }
+  intraday_high_usd: { value: 168.75, source: cnbc_ipo_takeaways, verified: true }
+  intraday_high_pct_vs_ipo: { value: 0.25, source: cnbc_ipo_takeaways, verified: true }
+  # Money "left on the table": shares_offered x (close - ipo_price)
+  underpricing_notional_usd: { value: 14.42e9, note: "555,555,555 x ($160.95-$135)", source: derived, verified: true }
+
+# ---------------------------------------------------------------------------
+# FY2025 FINANCIALS (from the S-1)
+# ---------------------------------------------------------------------------
+financials_fy2025:
+  revenue_total_usd:   { value: 18.7e9, note: "+33% YoY from $14.0B (FY2024)", source: morningstar_s1, verified: true }
+  revenue_fy2024_usd:  { value: 14.0e9, source: morningstar_s1, verified: true }
+  net_loss_usd:        { value: -4.9e9, note: "GAAP; driven by AI-segment losses, capex, SBC, debt", source: morningstar_s1, verified: true }
+  implied_ps_trailing: { value: 94.7, note: "$1.77T / $18.7B", source: derived, verified: true }
+
+  starlink:
+    revenue_usd:        { value: 11.4e9, note: "61% of total; +50% YoY", source: tradersunion_starlink, verified: true }
+    revenue_consumer_usd: { value: 7.2e9, note: "+49% YoY", source: morningstar_s1, verified: true }
+    revenue_entgov_usd:   { value: 4.2e9, note: "+51% YoY", source: morningstar_s1, verified: true }
+    operating_income_usd: { value: 4.4e9, source: tradersunion_starlink, verified: true }
+    users_end_2025:     { value: 9.0e6, note: ">9M; up from 4.6M end-2024", source: morningstar_s1, verified: true }
+    users_end_2024:     { value: 4.6e6, source: morningstar_s1, verified: true }
+
+  ai_segment_xai:
+    acquired_date:      { value: 2026-02, note: "SpaceX acquired xAI Feb 2026", source: techjacks_xai, verified: true }
+    operating_loss_usd: { value: -6.35e9, note: "FY2025 AI-segment operating loss", source: techjacks_xai, verified: true }
+    capex_usd:          { value: 12.7e9, note: "mostly Colossus / Colossus II buildout", source: techjacks_xai, verified: true }
+
+# ---------------------------------------------------------------------------
+# CONTEXT / COMPARISONS
+# ---------------------------------------------------------------------------
+context:
+  prior_record_ipo:
+    name: { value: "Saudi Aramco (2019)", verified: true }
+    gross_proceeds_usd: { value: 25.6e9, note: "~$29.4B with greenshoe exercised", source: comparables_csv, verified: true }
+    spacex_multiple_of_record: { value: 2.93, note: "~3x; $75B / $25.6B", source: derived, verified: true }
+  rank_us_company_by_value: { value: 7, note: "~7th-largest U.S. company at IPO; above Tesla (~$1.6T)", source: cnbc_roadshow, verified: true }
+  market_cap_post_debut_usd: { value: 2.11e12, note: "as of 2026-06-13 per quote aggregators; risen from IPO mark", source: investing_spacex, verified: false }

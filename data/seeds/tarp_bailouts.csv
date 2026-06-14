@@ -1,0 +1,15 @@
+# 2008-09 financial-crisis bailout stakes (TARP), curated from U.S. Treasury TARP monthly reports
+# and SIGTARP. Figures are ILLUSTRATIVE and rounded ($bn); they vary by accounting treatment and
+# are refined against Treasury's transaction-level data in the Phase 8 honesty pass. The point is
+# the mechanism — equity/warrants taken, then SOLD BACK 2009-2014 — not three-decimal precision.
+# equity_taken: what the public received in exchange for the support.
+# realized_proceeds_bn: what Treasury actually recovered (incl. dividends/warrant sales).
+# disposition_date: approximate date the stake was fully exited.
+program,disbursed_bn,equity_taken,disposition_date,realized_proceeds_bn,note
+AIG,67.8,"~92% common equity",2012-12-15,72.9,Treasury TARP portion; combined Treasury+Fed rescue netted ~+$22.7B.
+General Motors,49.5,"~60.8% common equity",2013-12-09,39.0,Auto bailout; Treasury exited at a realized loss.
+Chrysler,12.5,"equity + loans",2011-07-21,11.1,Exited early at a small loss.
+Ally Financial (GMAC),17.2,"common + preferred",2014-12-19,19.6,Auto-finance arm; modest gain.
+Citigroup,45.0,"7.7B common shares + warrants",2010-12-10,57.0,CPP+TIP; profitable incl. dividends & warrant sales.
+Bank of America,45.0,"preferred + warrants",2009-12-09,49.0,CPP+TIP; repaid with warrant profit.
+"CPP banks (other, aggregate)",160.0,"preferred + warrants",2012-06-30,175.0,Hundreds of banks; program returned a profit.

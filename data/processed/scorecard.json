@@ -1,0 +1,53 @@
+{
+  "updated": "2026-06-13",
+  "days_since_ipo": 1,
+  "spcx_last_close": 160.9499969482422,
+  "spcx_vs_ipo_pct": 19.2,
+  "n_pending": 4,
+  "rows": [
+    {
+      "id": "ret_3m_vs_ndx",
+      "horizon": "3 months",
+      "point_pct": -8.0,
+      "band_pct": [
+        -25.0,
+        10.0
+      ],
+      "realized_pct": null,
+      "status": "pending"
+    },
+    {
+      "id": "ret_12m_vs_ndx",
+      "horizon": "12 months",
+      "point_pct": -15.0,
+      "band_pct": [
+        -45.0,
+        20.0
+      ],
+      "realized_pct": null,
+      "status": "pending"
+    },
+    {
+      "id": "lockup_180d_reaction",
+      "horizon": "~180 days",
+      "point_pct": -6.0,
+      "band_pct": [
+        -15.0,
+        2.0
+      ],
+      "realized_pct": null,
+      "status": "pending"
+    },
+    {
+      "id": "peer_spillover_space",
+      "horizon": "1 month",
+      "point_pct": 2.0,
+      "band_pct": [
+        -4.0,
+        8.0
+      ],
+      "realized_pct": null,
+      "status": "pending"
+    }
+  ]
+}

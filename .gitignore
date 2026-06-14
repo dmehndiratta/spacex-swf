@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+data/raw/
+# config.toml has local paths — don't commit it
+config.toml

@@ -1,0 +1,424 @@
+{
+  "generated_at": "2026-06-13T13:17:17",
+  "fundsim_base": {
+    "params": {
+      "annual_inflow_bn": 60.0,
+      "inflow_growth": 0.02,
+      "real_return": 0.05,
+      "payout_rate": 0.03,
+      "years": 30,
+      "drawdown_year": null,
+      "drawdown_pct": 0.35
+    },
+    "path": [
+      {
+        "year": 1,
+        "aum_bn": 58.2,
+        "payout_bn": 1.8,
+        "dividend_per_capita": 7.0
+      },
+      {
+        "year": 2,
+        "aum_bn": 118.6,
+        "payout_bn": 3.67,
+        "dividend_per_capita": 14.0
+      },
+      {
+        "year": 3,
+        "aum_bn": 181.4,
+        "payout_bn": 5.61,
+        "dividend_per_capita": 22.0
+      },
+      {
+        "year": 4,
+        "aum_bn": 246.5,
+        "payout_bn": 7.62,
+        "dividend_per_capita": 30.0
+      },
+      {
+        "year": 5,
+        "aum_bn": 314.1,
+        "payout_bn": 9.71,
+        "dividend_per_capita": 38.0
+      },
+      {
+        "year": 6,
+        "aum_bn": 384.1,
+        "payout_bn": 11.88,
+        "dividend_per_capita": 46.0
+      },
+      {
+        "year": 7,
+        "aum_bn": 456.8,
+        "payout_bn": 14.13,
+        "dividend_per_capita": 55.0
+      },
+      {
+        "year": 8,
+        "aum_bn": 532.1,
+        "payout_bn": 16.46,
+        "dividend_per_capita": 64.0
+      },
+      {
+        "year": 9,
+        "aum_bn": 610.1,
+        "payout_bn": 18.87,
+        "dividend_per_capita": 73.0
+      },
+      {
+        "year": 10,
+        "aum_bn": 691.0,
+        "payout_bn": 21.37,
+        "dividend_per_capita": 83.0
+      },
+      {
+        "year": 11,
+        "aum_bn": 774.7,
+        "payout_bn": 23.96,
+        "dividend_per_capita": 93.0
+      },
+      {
+        "year": 12,
+        "aum_bn": 861.4,
+        "payout_bn": 26.64,
+        "dividend_per_capita": 103.0
+      },
+      {
+        "year": 13,
+        "aum_bn": 951.1,
+        "payout_bn": 29.42,
+        "dividend_per_capita": 114.0
+      },
+      {
+        "year": 14,
+        "aum_bn": 1044.0,
+        "payout_bn": 32.29,
+        "dividend_per_capita": 125.0
+      },
+      {
+        "year": 15,
+        "aum_bn": 1140.1,
+        "payout_bn": 35.26,
+        "dividend_per_capita": 137.0
+      },
+      {
+        "year": 16,
+        "aum_bn": 1239.5,
+        "payout_bn": 38.34,
+        "dividend_per_capita": 149.0
+      },
+      {
+        "year": 17,
+        "aum_bn": 1342.4,
+        "payout_bn": 41.52,
+        "dividend_per_capita": 161.0
+      },
+      {
+        "year": 18,
+        "aum_bn": 1448.7,
+        "payout_bn": 44.81,
+        "dividend_per_capita": 174.0
+      },
+      {
+        "year": 19,
+        "aum_bn": 1558.6,
+        "payout_bn": 48.2,
+        "dividend_per_capita": 187.0
+      },
+      {
+        "year": 20,
+        "aum_bn": 1672.2,
+        "payout_bn": 51.72,
+        "dividend_per_capita": 200.0
+      },
+      {
+        "year": 21,
+        "aum_bn": 1789.7,
+        "payout_bn": 55.35,
+        "dividend_per_capita": 215.0
+      },
+      {
+        "year": 22,
+        "aum_bn": 1911.0,
+        "payout_bn": 59.1,
+        "dividend_per_capita": 229.0
+      },
+      {
+        "year": 23,
+        "aum_bn": 2036.3,
+        "payout_bn": 62.98,
+        "dividend_per_capita": 244.0
+      },
+      {
+        "year": 24,
+        "aum_bn": 2165.8,
+        "payout_bn": 66.98,
+        "dividend_per_capita": 260.0
+      },
+      {
+        "year": 25,
+        "aum_bn": 2299.4,
+        "payout_bn": 71.12,
+        "dividend_per_capita": 276.0
+      },
+      {
+        "year": 26,
+        "aum_bn": 2437.5,
+        "payout_bn": 75.39,
+        "dividend_per_capita": 292.0
+      },
+      {
+        "year": 27,
+        "aum_bn": 2579.9,
+        "payout_bn": 79.79,
+        "dividend_per_capita": 309.0
+      },
+      {
+        "year": 28,
+        "aum_bn": 2727.0,
+        "payout_bn": 84.34,
+        "dividend_per_capita": 327.0
+      },
+      {
+        "year": 29,
+        "aum_bn": 2878.8,
+        "payout_bn": 89.03,
+        "dividend_per_capita": 345.0
+      },
+      {
+        "year": 30,
+        "aum_bn": 3035.4,
+        "payout_bn": 93.88,
+        "dividend_per_capita": 364.0
+      }
+    ],
+    "end_aum_bn": 3035.4,
+    "end_payout_bn": 93.88,
+    "end_dividend_per_capita": 364.0,
+    "us_adults": 258000000
+  },
+  "fundsim_drawdown": {
+    "params": {
+      "annual_inflow_bn": 60.0,
+      "inflow_growth": 0.02,
+      "real_return": 0.05,
+      "payout_rate": 0.03,
+      "years": 30,
+      "drawdown_year": 15,
+      "drawdown_pct": 0.35
+    },
+    "path": [
+      {
+        "year": 1,
+        "aum_bn": 58.2,
+        "payout_bn": 1.8,
+        "dividend_per_capita": 7.0
+      },
+      {
+        "year": 2,
+        "aum_bn": 118.6,
+        "payout_bn": 3.67,
+        "dividend_per_capita": 14.0
+      },
+      {
+        "year": 3,
+        "aum_bn": 181.4,
+        "payout_bn": 5.61,
+        "dividend_per_capita": 22.0
+      },
+      {
+        "year": 4,
+        "aum_bn": 246.5,
+        "payout_bn": 7.62,
+        "dividend_per_capita": 30.0
+      },
+      {
+        "year": 5,
+        "aum_bn": 314.1,
+        "payout_bn": 9.71,
+        "dividend_per_capita": 38.0
+      },
+      {
+        "year": 6,
+        "aum_bn": 384.1,
+        "payout_bn": 11.88,
+        "dividend_per_capita": 46.0
+      },
+      {
+        "year": 7,
+        "aum_bn": 456.8,
+        "payout_bn": 14.13,
+        "dividend_per_capita": 55.0
+      },
+      {
+        "year": 8,
+        "aum_bn": 532.1,
+        "payout_bn": 16.46,
+        "dividend_per_capita": 64.0
+      },
+      {
+        "year": 9,
+        "aum_bn": 610.1,
+        "payout_bn": 18.87,
+        "dividend_per_capita": 73.0
+      },
+      {
+        "year": 10,
+        "aum_bn": 691.0,
+        "payout_bn": 21.37,
+        "dividend_per_capita": 83.0
+      },
+      {
+        "year": 11,
+        "aum_bn": 774.7,
+        "payout_bn": 23.96,
+        "dividend_per_capita": 93.0
+      },
+      {
+        "year": 12,
+        "aum_bn": 861.4,
+        "payout_bn": 26.64,
+        "dividend_per_capita": 103.0
+      },
+      {
+        "year": 13,
+        "aum_bn": 951.1,
+        "payout_bn": 29.42,
+        "dividend_per_capita": 114.0
+      },
+      {
+        "year": 14,
+        "aum_bn": 1044.0,
+        "payout_bn": 32.29,
+        "dividend_per_capita": 125.0
+      },
+      {
+        "year": 15,
+        "aum_bn": 768.0,
+        "payout_bn": 23.75,
+        "dividend_per_capita": 92.0
+      },
+      {
+        "year": 16,
+        "aum_bn": 860.5,
+        "payout_bn": 26.61,
+        "dividend_per_capita": 103.0
+      },
+      {
+        "year": 17,
+        "aum_bn": 956.3,
+        "payout_bn": 29.58,
+        "dividend_per_capita": 115.0
+      },
+      {
+        "year": 18,
+        "aum_bn": 1055.5,
+        "payout_bn": 32.64,
+        "dividend_per_capita": 127.0
+      },
+      {
+        "year": 19,
+        "aum_bn": 1158.1,
+        "payout_bn": 35.82,
+        "dividend_per_capita": 139.0
+      },
+      {
+        "year": 20,
+        "aum_bn": 1264.4,
+        "payout_bn": 39.1,
+        "dividend_per_capita": 152.0
+      },
+      {
+        "year": 21,
+        "aum_bn": 1374.2,
+        "payout_bn": 42.5,
+        "dividend_per_capita": 165.0
+      },
+      {
+        "year": 22,
+        "aum_bn": 1487.9,
+        "payout_bn": 46.02,
+        "dividend_per_capita": 178.0
+      },
+      {
+        "year": 23,
+        "aum_bn": 1605.4,
+        "payout_bn": 49.65,
+        "dividend_per_capita": 192.0
+      },
+      {
+        "year": 24,
+        "aum_bn": 1726.8,
+        "payout_bn": 53.41,
+        "dividend_per_capita": 207.0
+      },
+      {
+        "year": 25,
+        "aum_bn": 1852.4,
+        "payout_bn": 57.29,
+        "dividend_per_capita": 222.0
+      },
+      {
+        "year": 26,
+        "aum_bn": 1982.2,
+        "payout_bn": 61.3,
+        "dividend_per_capita": 238.0
+      },
+      {
+        "year": 27,
+        "aum_bn": 2116.2,
+        "payout_bn": 65.45,
+        "dividend_per_capita": 254.0
+      },
+      {
+        "year": 28,
+        "aum_bn": 2254.7,
+        "payout_bn": 69.73,
+        "dividend_per_capita": 270.0
+      },
+      {
+        "year": 29,
+        "aum_bn": 2397.7,
+        "payout_bn": 74.16,
+        "dividend_per_capita": 287.0
+      },
+      {
+        "year": 30,
+        "aum_bn": 2545.5,
+        "payout_bn": 78.73,
+        "dividend_per_capita": 305.0
+      }
+    ],
+    "end_aum_bn": 2545.5,
+    "end_payout_bn": 78.73,
+    "end_dividend_per_capita": 305.0,
+    "us_adults": 258000000
+  },
+  "precedents": [
+    {
+      "year": 1979,
+      "label": "Chrysler federal loan guarantee",
+      "detail": "Treasury took warrants on the rescue \u2014 and turned a profit when Chrysler recovered.",
+      "kept": false
+    },
+    {
+      "year": 2008,
+      "label": "TARP",
+      "detail": "Equity + warrants taken across AIG, GM, Citi, and the banks \u2014 then sold back 2009-2014.",
+      "kept": false
+    },
+    {
+      "year": 2008,
+      "label": "UK RBS / Lloyds stakes",
+      "detail": "The UK took majority stakes in RBS and Lloyds; disposed over the following decade.",
+      "kept": false
+    },
+    {
+      "year": 2026,
+      "label": "Proposed equity condition",
+      "detail": "Same stake \u2014 but RETAINED and pooled in a Social Wealth Fund, in perpetuity.",
+      "kept": true
+    }
+  ],
+  "us_adults": 258000000
+}

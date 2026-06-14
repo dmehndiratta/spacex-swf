@@ -1,0 +1,11 @@
+# US wealth distribution and unrealized-gains stock by percentile bucket (plan.md §7.1).
+# Curated from Fed Distributional Financial Accounts (DFA) and SCF orders of magnitude, plus
+# Saez-Zucman / Realtime Inequality on the unrealized-gains share of top wealth. Illustrative,
+# rounded ($T); refined against the DFA release in Phase 8. unrealized_share = fraction of the
+# bucket's net worth that is unrealized capital gains (equities + business + real estate).
+bucket,net_worth_t,unrealized_share,note
+"Top 0.1%",21.0,0.55,Concentrated in appreciated equities & pass-through business with low basis.
+"Top 0.1-1%",28.0,0.45,Still equity-heavy; large embedded gains.
+"90-99th pct",58.0,0.35,"Mix of equities, housing, retirement accounts."
+"50-90th pct",44.0,0.25,Primarily housing equity + retirement.
+"Bottom 50%",4.0,0.15,Little financial wealth; gains mostly housing.

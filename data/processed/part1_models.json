@@ -1,0 +1,647 @@
+{
+  "generated_at": "2026-06-13T13:17:17",
+  "facts": {
+    "ipo_price": 135.0,
+    "first_day_close": 160.95,
+    "valuation_bn": 1770.0,
+    "revenue_bn": 18.7,
+    "ps_trailing": 94.7
+  },
+  "sotp": {
+    "segments": {
+      "starlink": {
+        "label": "Starlink (connectivity)",
+        "rev_bn": 11.4,
+        "growth": 0.5,
+        "mult": {
+          "bear": 9,
+          "base": 15,
+          "bull": 26
+        },
+        "note": "Profitable engine: $4.4B op income, 9M+ subs, direct-to-cell + global-broadband TAM. Valued on forward EV/Sales like a high-growth connectivity/subscription business.",
+        "ev_bn": {
+          "bear": 153.9,
+          "base": 256.5,
+          "bull": 444.6
+        }
+      },
+      "launch": {
+        "label": "Launch (Falcon / Starship)",
+        "rev_bn": 5.8,
+        "growth": 0.2,
+        "mult": {
+          "bear": 5,
+          "base": 9,
+          "bull": 16
+        },
+        "note": "Dominant cadence, contracted backlog, falling $/kg. Bull multiple carries Starship heavy-lift / Mars optionality; bear treats it as a cyclical gov-contract launcher.",
+        "ev_bn": {
+          "bear": 34.8,
+          "base": 62.6,
+          "bull": 111.4
+        }
+      },
+      "xai": {
+        "label": "xAI (AI segment)",
+        "rev_bn": 1.5,
+        "growth": 1.0,
+        "mult": {
+          "bear": 25,
+          "base": 70,
+          "bull": 150
+        },
+        "note": "Loss-making ($6.35B op loss, $12.7B capex). Valued against frontier-AI private marks with a wide band \u2014 explicit option-value-vs-cash-burn. Bear ~ a token mark; bull ~ a top-tier frontier lab.",
+        "ev_bn": {
+          "bear": 75.0,
+          "base": 210.0,
+          "bull": 450.0
+        }
+      }
+    },
+    "totals": {
+      "bear": 263.7,
+      "base": 529.1,
+      "bull": 1006.0
+    }
+  },
+  "reverse_dcf": {
+    "margins": [
+      15,
+      20,
+      25,
+      30
+    ],
+    "waccs": [
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0
+    ],
+    "implied_cagr_pct": [
+      [
+        54.0,
+        57.5,
+        60.8,
+        63.9,
+        66.8
+      ],
+      [
+        49.6,
+        53.0,
+        56.2,
+        59.1,
+        62.0
+      ],
+      [
+        46.2,
+        49.5,
+        52.6,
+        55.5,
+        58.3
+      ],
+      [
+        43.5,
+        46.8,
+        49.8,
+        52.6,
+        55.3
+      ]
+    ],
+    "base_case": {
+      "ss_margin": 0.2,
+      "wacc": 0.11,
+      "implied_cagr_pct": 56.2
+    },
+    "inputs": {
+      "base_rev_bn": 18.7,
+      "target_ev_bn": 1770.0,
+      "years": 10,
+      "ss_margin": 0.2,
+      "wacc": 0.11,
+      "term_growth": 0.03
+    }
+  },
+  "scenario_dcf": {
+    "scenarios": {
+      "bull": {
+        "prob": 0.25,
+        "cagr_pct": 47.0,
+        "ss_margin_pct": 30.0,
+        "wacc_pct": 10.0,
+        "implied_ev_bn": 1797.0,
+        "belief": "Starlink becomes the global connectivity layer (direct-to-cell at scale), Starship collapses $/kg and opens new markets, and xAI is a top-3 frontier lab. This is the case the market price already embeds \u2014 it roughly rationalises the $1.77T mark."
+      },
+      "base": {
+        "prob": 0.5,
+        "cagr_pct": 35.0,
+        "ss_margin_pct": 22.0,
+        "wacc_pct": 11.0,
+        "implied_ev_bn": 478.0,
+        "belief": "Starlink keeps compounding into profitability, launch grows steadily, xAI is a credible but cash-hungry challenger. A great company \u2014 worth well under the market mark."
+      },
+      "bear": {
+        "prob": 0.25,
+        "cagr_pct": 24.0,
+        "ss_margin_pct": 16.0,
+        "wacc_pct": 12.5,
+        "implied_ev_bn": 122.0,
+        "belief": "Starlink growth decelerates as it saturates dense markets and faces Kuiper, Starship slips, and xAI burns without winning \u2014 the AI/space narrative compresses."
+      }
+    },
+    "prob_weighted_ev_bn": 718.0,
+    "market_ev_bn": 1770.0
+  },
+  "first_day_pop": {
+    "spcx": 0.192,
+    "median": 0.17,
+    "mean": 0.2654,
+    "percentile": 53.0,
+    "n": 17,
+    "points": [
+      {
+        "name": "SoftBank Corp",
+        "ticker": "9434.T",
+        "ret": -0.146,
+        "sector": "Telecom",
+        "profitable": true
+      },
+      {
+        "name": "Uber",
+        "ticker": "UBER",
+        "ret": -0.076,
+        "sector": "Mobility",
+        "profitable": false
+      },
+      {
+        "name": "Glencore",
+        "ticker": "GLEN.L",
+        "ret": -0.03,
+        "sector": "Commodities",
+        "profitable": true
+      },
+      {
+        "name": "Meta (Facebook)",
+        "ticker": "META",
+        "ret": 0.006,
+        "sector": "Tech",
+        "profitable": true
+      },
+      {
+        "name": "NTT DoCoMo",
+        "ticker": "9437.T",
+        "ret": 0.01,
+        "sector": "Telecom",
+        "profitable": true
+      },
+      {
+        "name": "General Motors",
+        "ticker": "GM",
+        "ret": 0.036,
+        "sector": "Auto",
+        "profitable": true
+      },
+      {
+        "name": "Saudi Aramco",
+        "ticker": "2222.SR",
+        "ret": 0.1,
+        "sector": "Energy",
+        "profitable": true
+      },
+      {
+        "name": "Lucid Motors",
+        "ticker": "LCID",
+        "ret": 0.11,
+        "sector": "EV",
+        "profitable": false
+      },
+      {
+        "name": "AIA Group",
+        "ticker": "1299.HK",
+        "ret": 0.17,
+        "sector": "Insurance",
+        "profitable": true
+      },
+      {
+        "name": "SpaceX",
+        "ticker": "SPCX",
+        "ret": 0.192,
+        "sector": "Space/AI",
+        "profitable": false
+      },
+      {
+        "name": "Arm Holdings",
+        "ticker": "ARM",
+        "ret": 0.247,
+        "sector": "Semis",
+        "profitable": true
+      },
+      {
+        "name": "Visa",
+        "ticker": "V",
+        "ret": 0.282,
+        "sector": "Payments",
+        "profitable": true
+      },
+      {
+        "name": "Rivian",
+        "ticker": "RIVN",
+        "ret": 0.29,
+        "sector": "EV",
+        "profitable": false
+      },
+      {
+        "name": "Alibaba",
+        "ticker": "BABA",
+        "ret": 0.382,
+        "sector": "E-commerce",
+        "profitable": true
+      },
+      {
+        "name": "Coupang",
+        "ticker": "CPNG",
+        "ret": 0.407,
+        "sector": "E-commerce",
+        "profitable": false
+      },
+      {
+        "name": "Reddit",
+        "ticker": "RDDT",
+        "ret": 0.48,
+        "sector": "Social",
+        "profitable": false
+      },
+      {
+        "name": "Snowflake",
+        "ticker": "SNOW",
+        "ret": 1.116,
+        "sector": "Cloud",
+        "profitable": false
+      },
+      {
+        "name": "Airbnb",
+        "ticker": "ABNB",
+        "ret": 1.128,
+        "sector": "Travel",
+        "profitable": false
+      }
+    ]
+  },
+  "event_study": {
+    "market": "Nasdaq-100",
+    "event_date": "2026-06-12",
+    "estimation_window": [
+      -140,
+      -16
+    ],
+    "event_window": [
+      -1,
+      20
+    ],
+    "n_event_days_available": 2,
+    "peers": [
+      {
+        "ticker": "VSAT",
+        "name": "Viasat",
+        "beta": 2.37,
+        "alpha_bps": 37.2,
+        "car_pct": 4.65,
+        "car_t": 0.8,
+        "n_event_days": 2,
+        "ar0_pct": -5.4
+      },
+      {
+        "ticker": "LMT",
+        "name": "Lockheed Martin",
+        "beta": -0.01,
+        "alpha_bps": 10.5,
+        "car_pct": 2.83,
+        "car_t": 1.12,
+        "n_event_days": 2,
+        "ar0_pct": -1.62
+      },
+      {
+        "ticker": "RTX",
+        "name": "RTX",
+        "beta": 0.28,
+        "alpha_bps": -2.3,
+        "car_pct": 2.41,
+        "car_t": 1.09,
+        "n_event_days": 2,
+        "ar0_pct": -0.53
+      },
+      {
+        "ticker": "NOC",
+        "name": "Northrop Grumman",
+        "beta": -0.08,
+        "alpha_bps": 1.4,
+        "car_pct": 1.81,
+        "car_t": 0.69,
+        "n_event_days": 2,
+        "ar0_pct": -0.36
+      },
+      {
+        "ticker": "BA",
+        "name": "Boeing",
+        "beta": 0.78,
+        "alpha_bps": 3.4,
+        "car_pct": 1.74,
+        "car_t": 0.61,
+        "n_event_days": 2,
+        "ar0_pct": -1.7
+      },
+      {
+        "ticker": "TSLA",
+        "name": "Tesla",
+        "beta": 1.34,
+        "alpha_bps": -13.9,
+        "car_pct": 1.42,
+        "car_t": 0.51,
+        "n_event_days": 2,
+        "ar0_pct": 1.1
+      },
+      {
+        "ticker": "SESG.PA",
+        "name": "SES",
+        "beta": 0.39,
+        "alpha_bps": 31.9,
+        "car_pct": 0.25,
+        "car_t": 0.1,
+        "n_event_days": 1,
+        "ar0_pct": null
+      },
+      {
+        "ticker": "IRDM",
+        "name": "Iridium",
+        "beta": 0.73,
+        "alpha_bps": 80.9,
+        "car_pct": -0.24,
+        "car_t": -0.04,
+        "n_event_days": 2,
+        "ar0_pct": -6.47
+      },
+      {
+        "ticker": "PL",
+        "name": "Planet Labs",
+        "beta": 1.16,
+        "alpha_bps": 108.0,
+        "car_pct": -4.34,
+        "car_t": -0.48,
+        "n_event_days": 2,
+        "ar0_pct": -10.67
+      },
+      {
+        "ticker": "GSAT",
+        "name": "Globalstar",
+        "beta": 1.52,
+        "alpha_bps": 10.3,
+        "car_pct": -5.13,
+        "car_t": -0.98,
+        "n_event_days": 2,
+        "ar0_pct": -1.02
+      },
+      {
+        "ticker": "RKLB",
+        "name": "Rocket Lab",
+        "beta": 2.97,
+        "alpha_bps": 67.4,
+        "car_pct": -14.57,
+        "car_t": -1.85,
+        "n_event_days": 2,
+        "ar0_pct": -13.38
+      },
+      {
+        "ticker": "ASTS",
+        "name": "AST SpaceMobile",
+        "beta": 2.74,
+        "alpha_bps": 19.3,
+        "car_pct": -14.98,
+        "car_t": -1.61,
+        "n_event_days": 2,
+        "ar0_pct": -17.49
+      }
+    ]
+  },
+  "lockup": {
+    "total_shares": 13111111111,
+    "public_float_ipo": 638888888,
+    "insider_locked": 12472222223,
+    "adv_shares": 30000000,
+    "float_pct_of_total": 4.9,
+    "tranches": [
+      {
+        "day": 90,
+        "label": "Early release (price trigger)",
+        "frac_of_locked": 0.1,
+        "note": "Common 90-day partial release if the stock holds >X% above IPO price.",
+        "shares": 1247222222,
+        "value_bn": 200.8,
+        "days_to_absorb": 41.6,
+        "pct_of_float": 195.2
+      },
+      {
+        "day": 180,
+        "label": "Main lockup expiry",
+        "frac_of_locked": 0.35,
+        "note": "The classic 180-day cliff \u2014 the largest single supply event.",
+        "shares": 4365277778,
+        "value_bn": 702.8,
+        "days_to_absorb": 145.5,
+        "pct_of_float": 683.3
+      },
+      {
+        "day": 270,
+        "label": "Employee / RSU tranche",
+        "frac_of_locked": 0.15,
+        "note": "Staggered staff selling once trading windows open.",
+        "shares": 1870833333,
+        "value_bn": 301.2,
+        "days_to_absorb": 62.4,
+        "pct_of_float": 292.8
+      },
+      {
+        "day": 365,
+        "label": "Remaining insider overhang",
+        "frac_of_locked": 0.4,
+        "note": "Founder-controlled stock; mostly retained, but the legal overhang lifts.",
+        "shares": 4988888889,
+        "value_bn": 803.2,
+        "days_to_absorb": 166.3,
+        "pct_of_float": 780.9
+      }
+    ]
+  },
+  "index_inclusion": {
+    "mktcap_bn": 1770.0,
+    "indices": [
+      {
+        "index": "Nasdaq-100",
+        "tracking_aun_bn": 550,
+        "est_index_mktcap_bn": 28000,
+        "eligible": "Fast-track eligible (top non-financials); next special rebalance.",
+        "gate_passed": true,
+        "target_weight_pct": 6.32,
+        "passive_demand_bn": 34.8,
+        "passive_demand_days_adv": 7.2
+      },
+      {
+        "index": "S&P 500",
+        "tracking_aun_bn": 11500,
+        "est_index_mktcap_bn": 52000,
+        "eligible": "Gated by GAAP profitability (trailing 4 quarters). Net loss -> delayed until SpaceX prints sustained GAAP profit.",
+        "gate_passed": false,
+        "target_weight_pct": 3.4,
+        "passive_demand_bn": 391.4,
+        "passive_demand_days_adv": 81.0
+      }
+    ]
+  },
+  "risk_register": {
+    "items": [
+      {
+        "category": "Control / governance",
+        "risk": "Super-voting founder control",
+        "likelihood": 5,
+        "impact": 4,
+        "severity": 20,
+        "note": "Dual-class structure: public float holds large economic but minimal voting share."
+      },
+      {
+        "category": "Control / governance",
+        "risk": "Key-person (Musk) risk",
+        "likelihood": 4,
+        "impact": 5,
+        "severity": 20,
+        "note": "Strategy, capital access, and narrative are tightly bound to one individual."
+      },
+      {
+        "category": "Valuation / sentiment",
+        "risk": "Multiple compression if narrative turns",
+        "likelihood": 4,
+        "impact": 5,
+        "severity": 20,
+        "note": "Reverse-DCF implies ~56% revenue CAGR to justify $1.77T; little margin for error."
+      },
+      {
+        "category": "Customer concentration",
+        "risk": "U.S. government revenue dependence",
+        "likelihood": 4,
+        "impact": 4,
+        "severity": 16,
+        "note": "NASA/DoD/Space Force are anchor customers; quantified against Part II USAspending data."
+      },
+      {
+        "category": "Financial",
+        "risk": "Consolidated -$4.9B net loss / xAI burn",
+        "likelihood": 4,
+        "impact": 4,
+        "severity": 16,
+        "note": "AI segment -$6.35B op loss, $12.7B capex; consolidated GAAP loss."
+      },
+      {
+        "category": "Competition",
+        "risk": "Frontier-AI competition for xAI",
+        "likelihood": 5,
+        "impact": 3,
+        "severity": 15,
+        "note": "OpenAI/Anthropic/Google ahead on several axes; xAI burns to stay in the race."
+      },
+      {
+        "category": "Control / governance",
+        "risk": "Related-party dynamics post-xAI merger",
+        "likelihood": 4,
+        "impact": 3,
+        "severity": 12,
+        "note": "Intra-complex transactions (SpaceX/xAI/X/Tesla) blur arms-length pricing."
+      },
+      {
+        "category": "Regulatory",
+        "risk": "FCC spectrum & orbital-debris rules",
+        "likelihood": 3,
+        "impact": 4,
+        "severity": 12,
+        "note": "Starlink economics depend on spectrum grants and debris-mitigation regime."
+      },
+      {
+        "category": "Regulatory",
+        "risk": "Antitrust / CFIUS / ITAR export controls",
+        "likelihood": 3,
+        "impact": 4,
+        "severity": 12,
+        "note": "Scale + national-security entanglement invites scrutiny on both sides."
+      },
+      {
+        "category": "Competition",
+        "risk": "Amazon Kuiper / Blue Origin",
+        "likelihood": 4,
+        "impact": 3,
+        "severity": 12,
+        "note": "Well-capitalised direct competitor in broadband + launch."
+      },
+      {
+        "category": "Financial",
+        "risk": "Capex intensity & dilution path",
+        "likelihood": 4,
+        "impact": 3,
+        "severity": 12,
+        "note": "Heavy launch + compute capex implies further raises / greenshoe dilution."
+      },
+      {
+        "category": "Financial",
+        "risk": "Rate sensitivity (long-duration cash flows)",
+        "likelihood": 3,
+        "impact": 4,
+        "severity": 12,
+        "note": "Valuation is almost entirely terminal value; highly rate-sensitive."
+      },
+      {
+        "category": "Market structure",
+        "risk": "Lockup overhang",
+        "likelihood": 4,
+        "impact": 3,
+        "severity": 12,
+        "note": "Staged unlocks (90/180/270/365d) are recurring supply shocks \u2014 see lockup model."
+      },
+      {
+        "category": "Regulatory",
+        "risk": "FAA launch licensing throughput",
+        "likelihood": 3,
+        "impact": 3,
+        "severity": 9,
+        "note": "Starship cadence gated by environmental + launch-license review."
+      },
+      {
+        "category": "Competition",
+        "risk": "Chinese state constellations & launch",
+        "likelihood": 3,
+        "impact": 3,
+        "severity": 9,
+        "note": "Guowang/Qianfan and state launch erode the international TAM."
+      },
+      {
+        "category": "Market structure",
+        "risk": "Float scarcity / single-name concentration",
+        "likelihood": 3,
+        "impact": 3,
+        "severity": 9,
+        "note": "Small free float vs mega-cap inclusion creates volatility + index distortion."
+      }
+    ],
+    "categories": [
+      "Competition",
+      "Control / governance",
+      "Customer concentration",
+      "Financial",
+      "Market structure",
+      "Regulatory",
+      "Valuation / sentiment"
+    ],
+    "n": 16,
+    "top3": [
+      "Super-voting founder control",
+      "Key-person (Musk) risk",
+      "Multiple compression if narrative turns"
+    ],
+    "mean_severity": 13.6
+  }
+}

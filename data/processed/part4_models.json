@@ -1,0 +1,139 @@
+{
+  "generated_at": "2026-06-13T13:17:17",
+  "unrealized": {
+    "buckets": [
+      {
+        "bucket": "Top 0.1%",
+        "net_worth_t": 21.0,
+        "unrealized_share": 0.55,
+        "note": "Concentrated in appreciated equities & pass-through business with low basis.",
+        "unrealized_t": 11.6
+      },
+      {
+        "bucket": "Top 0.1-1%",
+        "net_worth_t": 28.0,
+        "unrealized_share": 0.45,
+        "note": "Still equity-heavy; large embedded gains.",
+        "unrealized_t": 12.6
+      },
+      {
+        "bucket": "90-99th pct",
+        "net_worth_t": 58.0,
+        "unrealized_share": 0.35,
+        "note": "Mix of equities, housing, retirement accounts.",
+        "unrealized_t": 20.3
+      },
+      {
+        "bucket": "50-90th pct",
+        "net_worth_t": 44.0,
+        "unrealized_share": 0.25,
+        "note": "Primarily housing equity + retirement.",
+        "unrealized_t": 11.0
+      },
+      {
+        "bucket": "Bottom 50%",
+        "net_worth_t": 4.0,
+        "unrealized_share": 0.15,
+        "note": "Little financial wealth; gains mostly housing.",
+        "unrealized_t": 0.6
+      }
+    ],
+    "total_unrealized_t": 56.1,
+    "top01_unrealized_t": 11.6,
+    "top1_unrealized_t": 24.2,
+    "top1_share_of_unrealized": 0.431
+  },
+  "revenue_1b": {
+    "threshold": "1B",
+    "rate": 0.25,
+    "expected_return": 0.07,
+    "avoidance": 0.25,
+    "loss_refund_drag": 0.15,
+    "taxable_stock_t": 11.6,
+    "n_taxpayers": 800,
+    "annual_accrual_t": 0.81,
+    "gross_revenue_bn": 203.0,
+    "net_revenue_bn": 129.0,
+    "revenue_10yr_bn": 1294.0
+  },
+  "revenue_100m": {
+    "threshold": "100M",
+    "rate": 0.25,
+    "expected_return": 0.07,
+    "avoidance": 0.25,
+    "loss_refund_drag": 0.15,
+    "taxable_stock_t": 24.2,
+    "n_taxpayers": 25000,
+    "annual_accrual_t": 1.69,
+    "gross_revenue_bn": 424.0,
+    "net_revenue_bn": 270.0,
+    "revenue_10yr_bn": 2700.0
+  },
+  "buy_borrow_die": {
+    "start_value": 1000.0,
+    "end_value": 6727.0,
+    "gain": 5727.0,
+    "growth": 0.1,
+    "years": 20,
+    "buy_borrow_die_tax": 0.0,
+    "naive_realization_tax": 1363.0,
+    "accrual_tax_total": 1432.0,
+    "ltcg_rate": 0.238,
+    "accrual_rate": 0.25
+  },
+  "symmetry": {
+    "rows": [
+      {
+        "year": 1,
+        "return_pct": 30,
+        "tax_one_sided": 7.5,
+        "tax_symmetric": 7.5,
+        "cum_one": 7.5,
+        "cum_sym": 7.5
+      },
+      {
+        "year": 2,
+        "return_pct": -20,
+        "tax_one_sided": 0.0,
+        "tax_symmetric": -6.5,
+        "cum_one": 7.5,
+        "cum_sym": 1.0
+      },
+      {
+        "year": 3,
+        "return_pct": 40,
+        "tax_one_sided": 10.4,
+        "tax_symmetric": 10.4,
+        "cum_one": 17.9,
+        "cum_sym": 11.4
+      },
+      {
+        "year": 4,
+        "return_pct": -30,
+        "tax_one_sided": 0.0,
+        "tax_symmetric": -10.9,
+        "cum_one": 17.9,
+        "cum_sym": 0.5
+      },
+      {
+        "year": 5,
+        "return_pct": 25,
+        "tax_one_sided": 6.4,
+        "tax_symmetric": 6.4,
+        "cum_one": 24.3,
+        "cum_sym": 6.8
+      },
+      {
+        "year": 6,
+        "return_pct": 15,
+        "tax_one_sided": 4.8,
+        "tax_symmetric": 4.8,
+        "cum_one": 29.0,
+        "cum_sym": 11.6
+      }
+    ],
+    "rate": 0.25,
+    "total_one_sided": 29.0,
+    "total_symmetric": 11.6
+  }
+}

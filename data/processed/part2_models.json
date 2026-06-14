@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-06-13T13:17:17",
+  "tarp": {
+    "rows": [
+      {
+        "program": "AIG",
+        "disbursed_bn": 67.8,
+        "realized_bn": 72.9,
+        "realized_pnl_bn": 5.1,
+        "disposition": "2012-12",
+        "spx_multiple": 5.26,
+        "kept_value_bn": 383.2,
+        "forfeited_bn": 310.3,
+        "note": "Treasury TARP portion; combined Treasury+Fed rescue netted ~+$22.7B."
+      },
+      {
+        "program": "General Motors",
+        "disbursed_bn": 49.5,
+        "realized_bn": 39.0,
+        "realized_pnl_bn": -10.5,
+        "disposition": "2013-12",
+        "spx_multiple": 4.11,
+        "kept_value_bn": 160.3,
+        "forfeited_bn": 121.3,
+        "note": "Auto bailout; Treasury exited at a realized loss."
+      },
+      {
+        "program": "Chrysler",
+        "disbursed_bn": 12.5,
+        "realized_bn": 11.1,
+        "realized_pnl_bn": -1.4,
+        "disposition": "2011-07",
+        "spx_multiple": 5.53,
+        "kept_value_bn": 61.4,
+        "forfeited_bn": 50.3,
+        "note": "Exited early at a small loss."
+      },
+      {
+        "program": "Ally Financial (GMAC)",
+        "disbursed_bn": 17.2,
+        "realized_bn": 19.6,
+        "realized_pnl_bn": 2.4,
+        "disposition": "2014-12",
+        "spx_multiple": 3.59,
+        "kept_value_bn": 70.3,
+        "forfeited_bn": 50.7,
+        "note": "Auto-finance arm; modest gain."
+      },
+      {
+        "program": "Citigroup",
+        "disbursed_bn": 45.0,
+        "realized_bn": 57.0,
+        "realized_pnl_bn": 12.0,
+        "disposition": "2010-12",
+        "spx_multiple": 5.99,
+        "kept_value_bn": 341.5,
+        "forfeited_bn": 284.5,
+        "note": "CPP+TIP; profitable incl. dividends & warrant sales."
+      },
+      {
+        "program": "Bank of America",
+        "disbursed_bn": 45.0,
+        "realized_bn": 49.0,
+        "realized_pnl_bn": 4.0,
+        "disposition": "2009-12",
+        "spx_multiple": 6.78,
+        "kept_value_bn": 332.3,
+        "forfeited_bn": 283.3,
+        "note": "CPP+TIP; repaid with warrant profit."
+      },
+      {
+        "program": "CPP banks (other, aggregate)",
+        "disbursed_bn": 160.0,
+        "realized_bn": 175.0,
+        "realized_pnl_bn": 15.0,
+        "disposition": "2012-06",
+        "spx_multiple": 5.46,
+        "kept_value_bn": 954.7,
+        "forfeited_bn": 779.7,
+        "note": "Hundreds of banks; program returned a profit."
+      }
+    ],
+    "as_of": "2026-06-12",
+    "total_disbursed_bn": 397.0,
+    "total_realized_bn": 423.6,
+    "total_realized_pnl_bn": 26.6,
+    "total_kept_value_bn": 2303.7,
+    "total_forfeited_bn": 1880.1,
+    "index": "S&P 500 (price; understates total return)"
+  },
+  "spacex_support": {
+    "federal_contracts_bn": 15.3,
+    "statelocal_received_m": 25.0,
+    "rescinded_m": 885.5,
+    "total_support_bn": 15.4,
+    "items": [
+      {
+        "label": "Federal contracts (NASA + DoD, identified)",
+        "bn": 15.3,
+        "kind": "contract"
+      },
+      {
+        "label": "State/local incentives received",
+        "bn": 0.03,
+        "kind": "subsidy"
+      },
+      {
+        "label": "FCC RDOF award (rescinded)",
+        "bn": 0.89,
+        "kind": "rescinded"
+      }
+    ]
+  },
+  "equity_condition": {
+    "stake_rate": 0.1,
+    "subsidy_share": 0.25,
+    "appreciation": 30.0,
+    "base_support_bn": 3.85,
+    "stake_today_bn": 11.6,
+    "note": "Illustrative. Stake = subsidy-equivalent support x stake-rate x valuation appreciation."
+  }
+}
