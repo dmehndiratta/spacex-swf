@@ -1,0 +1,31 @@
+# Major US-listed companies that have received significant government subsidies and/or tax breaks.
+# subsidy_bn = cumulative identified state + local + federal grants and tax abatements, rounded,
+#   from Good Jobs First Subsidy Tracker / Megadeals and public reporting. CHIPS Act grants included
+#   where awarded. Bailouts (TARP) are handled separately in Part II and excluded here.
+# market_cap_bn = approximate 2026 market capitalization, for context only.
+# This is an ILLUSTRATIVE, curated set, not an exhaustive census. See SOURCES.md.
+company,ticker,sector,subsidy_bn,market_cap_bn,note
+Boeing,BA,Aerospace & Defense,15.9,140,"Washington State aerospace tax breaks (2003 and 2013 megadeals)"
+Intel,INTC,Semiconductors,11.0,95,"State incentives (OR/AZ/NM/OH) plus CHIPS Act grant"
+Micron,MU,Semiconductors,7.5,110,"New York megadeal plus CHIPS Act grant"
+TSMC,TSM,Semiconductors,7.0,900,"Arizona fabs plus CHIPS Act grant (US-listed ADR)"
+Samsung,SSNLF,Semiconductors,6.4,300,"Texas fabs plus CHIPS Act grant (US-traded)"
+Amazon,AMZN,Tech,5.0,2300,"Warehouse, data-center, and HQ2 incentives across many states"
+General Motors,GM,Autos,4.5,55,"State and local plant incentives (bailout excluded; see Part II)"
+Tesla,TSLA,Autos,3.0,800,"Nevada Gigafactory $1.3B, NY $750M, Texas abatements, ZEV programs"
+Ford,F,Autos,2.6,48,"Michigan and other state plant incentives"
+Cheniere Energy,LNG,Energy,2.5,55,"LNG export terminal tax abatements (TX/LA)"
+GlobalFoundries,GFS,Semiconductors,2.0,28,"New York fab incentives plus CHIPS Act grant"
+Nucor,NUE,Materials,1.8,38,"Steel mill state and local incentives"
+ExxonMobil,XOM,Energy,1.6,520,"Refinery and petrochemical abatements"
+Toyota,TM,Autos,1.6,250,"US assembly plant incentives (US-listed ADR)"
+Berkshire Hathaway,BRK-B,Conglomerate,1.4,1050,"Utility (BHE) renewable and facility incentives"
+Alphabet,GOOGL,Tech,1.3,2200,"Data-center tax abatements (multiple states)"
+Walmart,WMT,Retail,1.2,520,"Distribution-center and store incentives"
+Microsoft,MSFT,Tech,1.1,3300,"Data-center incentives (multiple states)"
+Walt Disney,DIS,Media,1.1,180,"Film and production credits, resort-district arrangements"
+Chevron,CVX,Energy,1.1,300,"Refinery and facility abatements"
+Dow,DOW,Chemicals,1.0,28,"Petrochemical facility abatements"
+Steel Dynamics,STLD,Materials,0.7,22,"Steel mill incentives (Indiana and Texas)"
+FedEx,FDX,Logistics,0.7,55,"Hub and facility incentives (Memphis and others)"
+Pfizer,PFE,Pharma,0.6,150,"Manufacturing and R&D facility incentives"

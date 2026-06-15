@@ -16,8 +16,14 @@ PIPELINE = ROOT / "pipeline"
 MODELS = ROOT / "models"
 
 # ── Astro site root ──────────────────────────────────────────────────────────
-# Read from config.toml if present, else auto-detect a sibling Website folder.
+# Priority: WEBSITE_ROOT env var → config.toml → sibling Website folder.
 def _resolve_site_root() -> Path:
+    import os
+    env = os.environ.get("WEBSITE_ROOT")
+    if env:
+        p = Path(env)
+        if p.exists():
+            return p
     cfg = ROOT / "config.toml"
     if cfg.exists():
         for line in cfg.read_text(encoding="utf-8").splitlines():
@@ -31,7 +37,7 @@ def _resolve_site_root() -> Path:
             return candidate
     raise FileNotFoundError(
         "Cannot locate the Astro site root. "
-        "Set website_root in config.toml (copy config.toml.example)."
+        "Set WEBSITE_ROOT env var or website_root in config.toml."
     )
 
 

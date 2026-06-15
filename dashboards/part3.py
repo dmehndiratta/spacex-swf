@@ -120,25 +120,136 @@ def d15_alaska_pfd():
 # ---------------------------------------------------------------- 16. Precedent timeline
 def d16_precedent():
     prec = P3()["precedents"]
+    END = 2030  # right edge; the "perpetuity" bar runs to here and then arrows onward
     fig = go.Figure()
+    labels = [p["label"] for p in prec]
+    # one horizontal bar per precedent: from the year equity was taken to the year it was sold
     for i, p in enumerate(prec):
-        col = theme.SIGNAL if p["kept"] else theme.VOID
-        y = 1 if i % 2 == 0 else -1
+        kept = p["kept"]
+        sold = p["sold"] if p["sold"] is not None else END
+        color = theme.SIGNAL if kept else theme.SHADOW
+        span = sold - p["taken"]
         fig.add_trace(go.Scatter(
-            x=[p["year"]], y=[y], mode="markers+text", marker=dict(size=16, color=col, symbol="diamond"),
-            text=[f"<b>{p['label']}</b>"], textposition="top center" if y > 0 else "bottom center",
-            textfont=dict(family=theme.MONO, size=10, color=col),
-            hovertemplate=f"{p['year']} — {p['label']}<br>{p['detail']}<extra></extra>", showlegend=False))
-    fig.add_hline(y=0, line=dict(color=theme.CONCRETE, width=1))
+            x=[p["taken"], sold], y=[i, i], mode="lines",
+            line=dict(color=color, width=14),
+            hovertemplate=f"<b>{p['label']}</b><br>{p['equity']}<br>{p['outcome']}<extra></extra>",
+            showlegend=False))
+        # marker + year where the stake was taken
+        fig.add_trace(go.Scatter(
+            x=[p["taken"]], y=[i], mode="markers+text", marker=dict(size=9, color=color),
+            text=[f" {p['taken']}"], textposition="middle left",
+            textfont=dict(family=theme.MONO, size=10, color=theme.MIST), showlegend=False,
+            hoverinfo="skip"))
+        if p["sold"] is not None:
+            # "sold back" marker + year
+            fig.add_trace(go.Scatter(
+                x=[sold], y=[i], mode="markers+text", marker=dict(size=9, color=color, symbol="x"),
+                text=[f"sold {p['sold']} "], textposition="middle right",
+                textfont=dict(family=theme.MONO, size=10, color=theme.MIST), showlegend=False,
+                hoverinfo="skip"))
+        else:
+            # perpetuity arrow + label
+            fig.add_annotation(x=END, y=i, ax=END - 1.4, ay=i, xref="x", yref="y",
+                               axref="x", ayref="y", showarrow=True, arrowhead=2,
+                               arrowsize=1.1, arrowwidth=3, arrowcolor=theme.SIGNAL)
+            fig.add_annotation(x=END, y=i, text="held in perpetuity →", showarrow=False,
+                               xanchor="right", yshift=16,
+                               font=dict(family=theme.MONO, size=10, color=theme.SIGNAL))
     fig.update_layout(
-        xaxis=dict(title="", range=[1969, 2037], gridcolor=theme.GRID),
-        yaxis=dict(visible=False, range=[-2.2, 2.2]),
-        margin=dict(l=24, r=24, t=40, b=30))
+        xaxis=dict(title="", range=[1975, 2031], dtick=10, gridcolor=theme.GRID),
+        yaxis=dict(tickvals=list(range(len(prec))), ticktext=labels,
+                   range=[-0.7, len(prec) - 0.3], autorange=False,
+                   tickfont=dict(family=theme.MONO, size=11, color=theme.VOID)),
+        margin=dict(l=210, r=30, t=40, b=34))
     return "precedent-timeline.html", theme.figure_html(
-        fig, "Taking equity for public support is normal — keeping it is the novelty",
-        "Chrysler warrants → TARP → UK bank stakes → the proposed standing condition (orange = retained)",
-        SRC3, height=320)
+        fig, "Every time the public took equity, it sold back",
+        "How long each public equity stake was held. Grey bars were sold off within years; "
+        "the proposed condition (orange) is the first designed to be kept.",
+        SRC3, height=340)
+
+
+# ---------------------------------------------------------------- 17. Economy-wide portfolio
+def d17_economy_wide():
+    p3 = P3()
+    ew = p3["economy_wide"]
+    data = {"companies": ew["companies"], "by_sector": ew["by_sector"],
+            "total_subsidy_bn": ew["total_subsidy_bn"], "n_companies": ew["n_companies"],
+            "n_sectors": ew["n_sectors"], "us_adults": p3["us_adults"]}
+    body = f"""
+<div class="controls">
+  <div class="ctrl-group"><span class="ctrl-label">Stake value today (multiple of original subsidy)</span>
+    <input type="range" id="mult" min="1" max="6" step="0.5" value="3"><span class="ctrl-val" id="mv">3.0×</span></div>
+  <div class="ctrl-group"><span class="ctrl-label">Share routed to company employees</span>
+    <input type="range" id="emp" min="0" max="100" step="5" value="40"><span class="ctrl-val" id="ev">40%</span></div>
+  <div class="ctrl-group"><span class="ctrl-label">Fund payout / dividend rule</span>
+    <input type="range" id="pay" min="1" max="5" step="0.5" value="3"><span class="ctrl-val" id="pv">3.0%</span></div>
+</div>
+<div class="metrics">
+  <div class="metric"><span class="metric-label">Identified subsidies</span><span class="metric-value" id="m-sub">—</span></div>
+  <div class="metric"><span class="metric-label">Portfolio value today</span><span class="metric-value signal" id="m-port">—</span></div>
+  <div class="metric"><span class="metric-label">To the fund</span><span class="metric-value" id="m-fund">—</span></div>
+  <div class="metric"><span class="metric-label">To employees</span><span class="metric-value" id="m-emp">—</span></div>
+  <div class="metric"><span class="metric-label">Citizen dividend</span><span class="metric-value signal" id="m-div">—</span></div>
+</div>
+<div class="plot-wrap"><div id="psector" style="height:300px"></div></div>
+<div class="plot-wrap"><div id="pcompany" style="height:420px"></div></div>
+<div class="footnote" style="border-top:none">Curated, illustrative set of {data['n_companies']} large US-listed
+subsidy recipients across {data['n_sectors']} sectors (Good Jobs First and public reporting; bailouts excluded).
+"Stake value today" folds the stake rate and post-support appreciation into one multiple on the original subsidy.
+Hover a company to see the implied stake as a share of its market cap; where that share is large, routing part of it
+to employees keeps the firm fundable while still spreading ownership.</div>
+<script>
+const DATA = {json.dumps(data)};
+const SIGNAL="{theme.SIGNAL}", VOID="{theme.VOID}", MIST="{theme.MIST}", GRID="{theme.GRID}", CONCRETE="{theme.CONCRETE}";
+const PALETTE = {json.dumps(theme.CATEGORICAL)};
+const sectors = DATA.by_sector.map(s=>s.sector);
+const sectorColor = {{}}; sectors.forEach((s,i)=>sectorColor[s]=PALETTE[i % PALETTE.length]);
+function fmt(bn){{ return bn>=1000 ? '$'+(bn/1000).toFixed(2)+'T' : '$'+bn.toFixed(0)+'B'; }}
+function draw(){{
+  const m=+document.getElementById('mult').value, e=+document.getElementById('emp').value/100,
+        p=+document.getElementById('pay').value/100;
+  document.getElementById('mv').textContent=m.toFixed(1)+'×';
+  document.getElementById('ev').textContent=(e*100).toFixed(0)+'%';
+  document.getElementById('pv').textContent=(p*100).toFixed(1)+'%';
+  const port = DATA.total_subsidy_bn * m;
+  const fund = port*(1-e), emp = port*e;
+  document.getElementById('m-sub').textContent=fmt(DATA.total_subsidy_bn);
+  document.getElementById('m-port').textContent=fmt(port);
+  document.getElementById('m-fund').textContent=fmt(fund);
+  document.getElementById('m-emp').textContent=fmt(emp);
+  document.getElementById('m-div').textContent='$'+(fund*1e9*p/DATA.us_adults).toFixed(0)+'/adult';
+  // sector chart (portfolio value by sector = subsidy_by_sector * m)
+  const secVals = DATA.by_sector.map(s=>s.subsidy_bn*m);
+  Plotly.react('psector',[{{type:'bar', x:secVals, y:sectors, orientation:'h',
+    marker:{{color:sectors.map(s=>sectorColor[s])}},
+    text:secVals.map(v=>fmt(v)), textposition:'auto',
+    hovertemplate:'%{{y}}<br>portfolio value '+'%{{text}}<extra></extra>'}}],
+    {{font:{{family:'IBM Plex Sans'}}, paper_bgcolor:'#fff', plot_bgcolor:'#EDE9E3',
+     margin:{{l:140,r:20,t:30,b:34}}, title:{{text:'Diversified across sectors',font:{{size:12,family:'IBM Plex Mono',color:MIST}},x:0}},
+     xaxis:{{title:'$B', gridcolor:GRID}}, yaxis:{{autorange:'reversed', gridcolor:GRID}}, showlegend:false}},
+    {{responsive:true, displayModeBar:false}});
+  // per-company chart (stake value), hover shows % of market cap
+  const cs = DATA.companies;
+  const names = cs.map(c=>c.company);
+  const stake = cs.map(c=>c.subsidy_bn*m);
+  const pct = cs.map(c=>100*c.subsidy_bn*m/c.market_cap_bn);
+  Plotly.react('pcompany',[{{type:'bar', x:stake, y:names, orientation:'h',
+    marker:{{color:cs.map(c=>sectorColor[c.sector])}},
+    customdata:cs.map((c,i)=>[c.sector, pct[i], c.subsidy_bn]),
+    hovertemplate:'<b>%{{y}}</b> (%{{customdata[0]}})<br>subsidy $%{{customdata[2]:.1f}}B → stake '+'%{{x:.1f}}B'+
+      '<br>≈ %{{customdata[1]:.0f}}% of market cap<extra></extra>'}}],
+    {{font:{{family:'IBM Plex Sans'}}, paper_bgcolor:'#fff', plot_bgcolor:'#EDE9E3',
+     margin:{{l:140,r:20,t:30,b:36}}, title:{{text:'By company (stake value today)',font:{{size:12,family:'IBM Plex Mono',color:MIST}},x:0}},
+     xaxis:{{title:'$B', gridcolor:GRID}}, yaxis:{{autorange:'reversed', gridcolor:GRID, tickfont:{{size:10}}}}, showlegend:false}},
+    {{responsive:true, displayModeBar:false}});
+}}
+['mult','emp','pay'].forEach(id=>document.getElementById(id).addEventListener('input',draw)); draw();
+</script>"""
+    return "economy-wide-portfolio.html", theme.page_html(
+        "The portfolio, extended across the economy",
+        "Every major US-listed company that took subsidies or tax breaks — one diversified public stake",
+        body, SRC3)
 
 
 STATIC_BUILDERS = [d13_swf_comparison, d15_alaska_pfd, d16_precedent]
-INTERACTIVE_BUILDERS = [d14_fund_simulator]
+INTERACTIVE_BUILDERS = [d14_fund_simulator, d17_economy_wide]

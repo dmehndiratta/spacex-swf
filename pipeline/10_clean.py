@@ -70,6 +70,18 @@ def main():
         total_bn = aw["amount"].sum() / 1e9
         log(f"spacex_awards: {len(aw)} awards, ${total_bn:.1f}B identified federal obligations")
 
+    # --- USAspending: obligations by fiscal year (NASA / DoD / other) for the timeline ---
+    by_path = paths.RAW / "usaspending" / "latest" / "spacex_by_year.csv"
+    if by_path.exists():
+        by = pd.read_csv(by_path)
+        for c in ("nasa", "dod", "other", "total"):
+            by[c] = pd.to_numeric(by[c], errors="coerce").fillna(0) / 1e9  # -> $bn
+        by["fiscal_year"] = by["fiscal_year"].astype(int)
+        by = by.sort_values("fiscal_year").reset_index(drop=True)
+        by.to_parquet(paths.PROCESSED / "spacex_obligations_by_year.parquet", index=False)
+        log(f"obligations_by_year: {len(by)} years, ${by['total'].sum():.1f}B total "
+            f"({by['fiscal_year'].min()}-{by['fiscal_year'].max()})")
+
     log("done")
 
 

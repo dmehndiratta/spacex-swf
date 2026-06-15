@@ -75,6 +75,39 @@ def fetch_prices() -> None:
 
 
 USASPENDING_URL = "https://api.usaspending.gov/api/v2/search/spending_by_award/"
+USASPENDING_OVERTIME_URL = "https://api.usaspending.gov/api/v2/search/spending_over_time/"
+
+
+def _overtime(agency: str | None) -> dict[str, float]:
+    """SpaceX contract obligations by federal fiscal year (optionally filtered to one agency).
+    Far more robust than per-award start dates, which USAspending often returns null."""
+    flt = {"recipient_search_text": ["Space Exploration Technologies"],
+           "award_type_codes": ["A", "B", "C", "D"],
+           "time_period": [{"start_date": "2008-01-01", "end_date": "2026-09-30"}]}
+    if agency:
+        flt["agencies"] = [{"type": "awarding", "tier": "toptier", "name": agency}]
+    r = requests.post(USASPENDING_OVERTIME_URL,
+                      json={"group": "fiscal_year", "filters": flt}, timeout=45)
+    r.raise_for_status()
+    return {x["time_period"]["fiscal_year"]: (x["aggregated_amount"] or 0.0)
+            for x in r.json().get("results", [])}
+
+
+def fetch_usaspending_by_year() -> None:
+    """Obligations by fiscal year, split NASA / DoD / other, for the timeline dashboard."""
+    try:
+        total = _overtime(None)
+        nasa = _overtime("National Aeronautics and Space Administration")
+        dod = _overtime("Department of Defense")
+    except Exception as e:
+        log(f"  ! usaspending over-time: {type(e).__name__}: {e} — keeping last-good")
+        return
+    rows = []
+    for yr in sorted(total):
+        n, d, t = nasa.get(yr, 0.0), dod.get(yr, 0.0), total.get(yr, 0.0)
+        rows.append({"fiscal_year": int(yr), "nasa": n, "dod": d,
+                     "other": max(t - n - d, 0.0), "total": t})
+    _promote("usaspending", "spacex_by_year", pd.DataFrame(rows), min_rows=5)
 
 
 def fetch_usaspending() -> None:
@@ -141,6 +174,7 @@ def main() -> None:
     fetch_prices()
     fetch_cpi()
     fetch_usaspending()
+    fetch_usaspending_by_year()
     # record a fetch manifest
     man = {"fetched_at": dt.datetime.now().isoformat(timespec="seconds"), "date": TODAY}
     (paths.RAW / "fetch_manifest.json").write_text(json.dumps(man, indent=2))

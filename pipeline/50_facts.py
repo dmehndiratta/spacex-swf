@@ -112,6 +112,14 @@ def main():
             "fundInflow": tb(fb["params"]["annual_inflow_bn"]),
             "fundDrawdownAum": tb(p3["fundsim_drawdown"]["end_aum_bn"]),
         })
+        ew = p3.get("economy_wide")
+        if ew:
+            out.update({
+                "ewCompanies": ew["n_companies"],
+                "ewSectors": ew["n_sectors"],
+                "ewSubsidies": tb(ew["total_subsidy_bn"]),
+                "ewPortfolio3x": tb(ew["total_subsidy_bn"] * ew["default_value_multiple"]),
+            })
     if p4:
         u, r1 = p4["unrealized"], p4["revenue_1b"]
         out.update({

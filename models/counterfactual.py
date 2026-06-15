@@ -108,6 +108,31 @@ def equity_condition_estimate(stake_rate: float = 0.10) -> dict:
     }
 
 
+def economy_wide_portfolio() -> dict:
+    """Illustrative: extend the equity condition across every major US-listed company that has
+    received government subsidies or tax breaks. Reads a curated seed (Good Jobs First etc.).
+    The 'stake value today' bundles the stake rate and post-support appreciation into a single
+    value multiple on the original subsidy (defaulted to 3x, matching the SpaceX estimate's
+    10% stake x 30x appreciation on subsidy-equivalent support). All parameters are sliders in
+    the dashboard; this is a breadth-and-scale illustration, not a precise portfolio mark."""
+    df = pd.read_csv(paths.DATA / "seeds" / "subsidy_recipients_public.csv", comment="#")
+    df = df.sort_values("subsidy_bn", ascending=False)
+    companies = [{"company": r["company"], "ticker": r["ticker"], "sector": r["sector"],
+                  "subsidy_bn": round(float(r["subsidy_bn"]), 2),
+                  "market_cap_bn": round(float(r["market_cap_bn"]), 1)}
+                 for _, r in df.iterrows()]
+    by_sector = df.groupby("sector")["subsidy_bn"].sum().sort_values(ascending=False)
+    return {
+        "companies": companies,
+        "by_sector": [{"sector": s, "subsidy_bn": round(float(v), 2)} for s, v in by_sector.items()],
+        "total_subsidy_bn": round(float(df["subsidy_bn"].sum()), 1),
+        "n_companies": int(len(df)),
+        "n_sectors": int(df["sector"].nunique()),
+        "default_value_multiple": 3.0,
+        "note": "Curated, illustrative set of major US-listed subsidy recipients; bailouts excluded.",
+    }
+
+
 if __name__ == "__main__":
     import json
     t = tarp_counterfactual()

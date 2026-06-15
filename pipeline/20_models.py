@@ -51,18 +51,24 @@ def build_part2() -> dict:
     }
 
 
+# Each precedent is a holding period: the year public equity was TAKEN and the year it was SOLD.
+# The proposal is the only one with no sale date — it is held in perpetuity.
 PRECEDENTS = [
-    {"year": 1979, "label": "Chrysler federal loan guarantee", "detail":
-     "Treasury took warrants on the rescue — and turned a profit when Chrysler recovered.",
+    {"label": "Chrysler bailout", "taken": 1979, "sold": 1983,
+     "equity": "Warrants on the $1.2B federal loan guarantee",
+     "outcome": "Sold back when Chrysler recovered; Treasury booked a gain and exited.",
      "kept": False},
-    {"year": 2008, "label": "TARP", "detail":
-     "Equity + warrants taken across AIG, GM, Citi, and the banks — then sold back 2009-2014.",
+    {"label": "TARP (AIG, GM, Citi, banks)", "taken": 2008, "sold": 2014,
+     "equity": "Equity stakes and warrants across the rescued firms",
+     "outcome": "Sold back 2009-2014, at the first politically convenient moment.",
      "kept": False},
-    {"year": 2008, "label": "UK RBS / Lloyds stakes", "detail":
-     "The UK took majority stakes in RBS and Lloyds; disposed over the following decade.",
+    {"label": "UK RBS / Lloyds", "taken": 2008, "sold": 2018,
+     "equity": "Majority stakes in two of Britain's largest banks",
+     "outcome": "Disposed of gradually over the following decade.",
      "kept": False},
-    {"year": 2026, "label": "Proposed equity condition", "detail":
-     "Same stake — but RETAINED and pooled in a Social Wealth Fund, in perpetuity.",
+    {"label": "Proposed equity condition", "taken": 2026, "sold": None,
+     "equity": "Stake matched to the public support that earned it",
+     "outcome": "Retained and pooled in a Social Wealth Fund, in perpetuity.",
      "kept": True},
 ]
 
@@ -73,6 +79,7 @@ def build_part3() -> dict:
         "fundsim_base": fundsim.simulate(),
         "fundsim_drawdown": fundsim.simulate(drawdown_year=15),
         "precedents": PRECEDENTS,
+        "economy_wide": counterfactual.economy_wide_portfolio(),
         "us_adults": fundsim.US_ADULTS,
     }
 

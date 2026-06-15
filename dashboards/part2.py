@@ -14,32 +14,35 @@ SRC2 = "Sources: USAspending.gov (SpaceX awards, identified major contracts); U.
 
 # ---------------------------------------------------------------- 9. Federal obligations timeline
 def d9_obligations():
-    aw = pd.read_parquet(paths.PROCESSED / "spacex_awards.parquet")
-    aw = aw.dropna(subset=["year"])
-    aw["year"] = aw["year"].astype(int)
-    aw = aw[(aw["year"] >= 2008) & (aw["year"] <= 2026)]
-    by = aw.groupby(["year", "agency_short"])["amount"].sum().reset_index()
-    top = aw.groupby("agency_short")["amount"].sum().sort_values(ascending=False).head(4).index.tolist()
-    by["agency_short"] = by["agency_short"].where(by["agency_short"].isin(top), "Other")
-    pivot = by.groupby(["year", "agency_short"])["amount"].sum().unstack(fill_value=0) / 1e9
+    by = pd.read_parquet(paths.PROCESSED / "spacex_obligations_by_year.parquet")
+    by = by[(by["fiscal_year"] >= 2008) & (by["fiscal_year"] <= 2026)].sort_values("fiscal_year")
+    x = by["fiscal_year"].tolist()
     fig = go.Figure()
-    palette = {"NASA": theme.SIGNAL, "DoD": theme.VOID}
-    for i, col in enumerate(pivot.columns):
-        fig.add_bar(x=pivot.index, y=pivot[col], name=col,
-                    marker_color=palette.get(col, theme.CATEGORICAL[(i + 2) % len(theme.CATEGORICAL)]),
-                    hovertemplate=col + " %{x}: $%{y:.2f}B<extra></extra>")
-    cum = pivot.sum(axis=1).cumsum()
-    fig.add_trace(go.Scatter(x=cum.index, y=cum.values, name="Cumulative", yaxis="y2",
+    series = [("NASA", "nasa", theme.SIGNAL), ("DoD", "dod", theme.VOID),
+              ("Other agencies", "other", theme.CONCRETE)]
+    for name, col, color in series:
+        if by[col].sum() <= 0:
+            continue
+        fig.add_bar(x=x, y=by[col].clip(lower=0), name=name, marker_color=color,
+                    hovertemplate=name + " FY%{x}: $%{y:.2f}B<extra></extra>")
+    cum = by["total"].cumsum()
+    fig.add_trace(go.Scatter(x=x, y=cum.values, name="Cumulative (all)", yaxis="y2",
                              mode="lines+markers", line=dict(color=theme.SHADOW, width=2),
-                             hovertemplate="cumulative %{x}: $%{y:.1f}B<extra></extra>"))
+                             marker=dict(size=5),
+                             hovertemplate="cumulative through FY%{x}: $%{y:.1f}B<extra></extra>"))
+    total_bn = by["total"].sum()
     fig.update_layout(barmode="stack", legend=dict(orientation="h", y=1.08, x=0),
-                      xaxis_title="Award start year", yaxis_title="Obligations ($B/yr)",
+                      xaxis=dict(title="Federal fiscal year", dtick=2),
+                      yaxis_title="Obligations ($B / year)",
                       yaxis2=dict(title="Cumulative ($B)", overlaying="y", side="right",
-                                  showgrid=False, tickfont=dict(family=theme.MONO, size=10, color=theme.MIST)),
-                      margin=dict(l=58, r=58, t=58, b=46))
+                                  showgrid=False, rangemode="tozero",
+                                  tickfont=dict(family=theme.MONO, size=10, color=theme.MIST),
+                                  title_font=dict(family=theme.MONO, size=11, color=theme.MIST)),
+                      margin=dict(l=58, r=62, t=58, b=46))
     return "obligations-timeline.html", theme.figure_html(
         fig, "SpaceX's federal scaffolding, by year",
-        "Identified NASA + DoD contract obligations (USAspending) — bars annual, line cumulative",
+        f"Federal contract obligations by fiscal year (USAspending). Bars annual by agency, "
+        f"line cumulative — ${total_bn:.1f}B identified since 2008",
         SRC2, height=500)
 
 

@@ -1,0 +1,64 @@
+name: Weekly data refresh → Website deploy
+
+# Every Monday: re-run the pipeline against live data, push the regenerated
+# dashboards + facts JSON into the Website repo, which triggers that repo's
+# existing deploy.yml → Cloudflare Pages rebuild.
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"   # Mondays 13:00 UTC
+  workflow_dispatch: {}
+
+concurrency:
+  group: spacex-swf-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out this pipeline repo
+      - uses: actions/checkout@v4
+        with:
+          path: pipeline
+
+      # 2. Check out the Website repo (needs WEBSITE_PAT — a fine-grained PAT
+      #    with Contents: read+write on dmehndiratta/Website)
+      - uses: actions/checkout@v4
+        with:
+          repository: dmehndiratta/Website
+          token: ${{ secrets.WEBSITE_PAT }}
+          path: website
+
+      # 3. Python + deps
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r pipeline/requirements.txt
+
+      # 4. Run the full pipeline; WEBSITE_ROOT tells paths.py where to write outputs
+      - name: Run pipeline
+        working-directory: pipeline
+        env:
+          WEBSITE_ROOT: ${{ github.workspace }}/website
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}   # optional; keyless CSV fallback if unset
+        run: python run.py
+
+      # 5. Commit regenerated outputs back into the Website repo and push
+      - name: Commit & push to Website
+        working-directory: website
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/research/spacex-social-wealth-fund/ src/data/spacex_facts.json || true
+          if git diff --cached --quiet; then
+            echo "No data changes this run — skipping push."
+          else
+            git commit -m "data: weekly SpaceX-SWF refresh $(date -u +%Y-%m-%d) [skip ci]"
+            git push
+          fi

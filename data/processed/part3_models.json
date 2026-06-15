@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T13:17:17",
+  "generated_at": "2026-06-15T10:22:52",
   "fundsim_base": {
     "params": {
       "annual_inflow_bn": 60.0,
@@ -396,29 +396,264 @@
   },
   "precedents": [
     {
-      "year": 1979,
-      "label": "Chrysler federal loan guarantee",
-      "detail": "Treasury took warrants on the rescue \u2014 and turned a profit when Chrysler recovered.",
+      "label": "Chrysler bailout",
+      "taken": 1979,
+      "sold": 1983,
+      "equity": "Warrants on the $1.2B federal loan guarantee",
+      "outcome": "Sold back when Chrysler recovered; Treasury booked a gain and exited.",
       "kept": false
     },
     {
-      "year": 2008,
-      "label": "TARP",
-      "detail": "Equity + warrants taken across AIG, GM, Citi, and the banks \u2014 then sold back 2009-2014.",
+      "label": "TARP (AIG, GM, Citi, banks)",
+      "taken": 2008,
+      "sold": 2014,
+      "equity": "Equity stakes and warrants across the rescued firms",
+      "outcome": "Sold back 2009-2014, at the first politically convenient moment.",
       "kept": false
     },
     {
-      "year": 2008,
-      "label": "UK RBS / Lloyds stakes",
-      "detail": "The UK took majority stakes in RBS and Lloyds; disposed over the following decade.",
+      "label": "UK RBS / Lloyds",
+      "taken": 2008,
+      "sold": 2018,
+      "equity": "Majority stakes in two of Britain's largest banks",
+      "outcome": "Disposed of gradually over the following decade.",
       "kept": false
     },
     {
-      "year": 2026,
       "label": "Proposed equity condition",
-      "detail": "Same stake \u2014 but RETAINED and pooled in a Social Wealth Fund, in perpetuity.",
+      "taken": 2026,
+      "sold": null,
+      "equity": "Stake matched to the public support that earned it",
+      "outcome": "Retained and pooled in a Social Wealth Fund, in perpetuity.",
       "kept": true
     }
   ],
+  "economy_wide": {
+    "companies": [
+      {
+        "company": "Boeing",
+        "ticker": "BA",
+        "sector": "Aerospace & Defense",
+        "subsidy_bn": 15.9,
+        "market_cap_bn": 140.0
+      },
+      {
+        "company": "Intel",
+        "ticker": "INTC",
+        "sector": "Semiconductors",
+        "subsidy_bn": 11.0,
+        "market_cap_bn": 95.0
+      },
+      {
+        "company": "Micron",
+        "ticker": "MU",
+        "sector": "Semiconductors",
+        "subsidy_bn": 7.5,
+        "market_cap_bn": 110.0
+      },
+      {
+        "company": "TSMC",
+        "ticker": "TSM",
+        "sector": "Semiconductors",
+        "subsidy_bn": 7.0,
+        "market_cap_bn": 900.0
+      },
+      {
+        "company": "Samsung",
+        "ticker": "SSNLF",
+        "sector": "Semiconductors",
+        "subsidy_bn": 6.4,
+        "market_cap_bn": 300.0
+      },
+      {
+        "company": "Amazon",
+        "ticker": "AMZN",
+        "sector": "Tech",
+        "subsidy_bn": 5.0,
+        "market_cap_bn": 2300.0
+      },
+      {
+        "company": "General Motors",
+        "ticker": "GM",
+        "sector": "Autos",
+        "subsidy_bn": 4.5,
+        "market_cap_bn": 55.0
+      },
+      {
+        "company": "Tesla",
+        "ticker": "TSLA",
+        "sector": "Autos",
+        "subsidy_bn": 3.0,
+        "market_cap_bn": 800.0
+      },
+      {
+        "company": "Ford",
+        "ticker": "F",
+        "sector": "Autos",
+        "subsidy_bn": 2.6,
+        "market_cap_bn": 48.0
+      },
+      {
+        "company": "Cheniere Energy",
+        "ticker": "LNG",
+        "sector": "Energy",
+        "subsidy_bn": 2.5,
+        "market_cap_bn": 55.0
+      },
+      {
+        "company": "GlobalFoundries",
+        "ticker": "GFS",
+        "sector": "Semiconductors",
+        "subsidy_bn": 2.0,
+        "market_cap_bn": 28.0
+      },
+      {
+        "company": "Nucor",
+        "ticker": "NUE",
+        "sector": "Materials",
+        "subsidy_bn": 1.8,
+        "market_cap_bn": 38.0
+      },
+      {
+        "company": "ExxonMobil",
+        "ticker": "XOM",
+        "sector": "Energy",
+        "subsidy_bn": 1.6,
+        "market_cap_bn": 520.0
+      },
+      {
+        "company": "Toyota",
+        "ticker": "TM",
+        "sector": "Autos",
+        "subsidy_bn": 1.6,
+        "market_cap_bn": 250.0
+      },
+      {
+        "company": "Berkshire Hathaway",
+        "ticker": "BRK-B",
+        "sector": "Conglomerate",
+        "subsidy_bn": 1.4,
+        "market_cap_bn": 1050.0
+      },
+      {
+        "company": "Alphabet",
+        "ticker": "GOOGL",
+        "sector": "Tech",
+        "subsidy_bn": 1.3,
+        "market_cap_bn": 2200.0
+      },
+      {
+        "company": "Walmart",
+        "ticker": "WMT",
+        "sector": "Retail",
+        "subsidy_bn": 1.2,
+        "market_cap_bn": 520.0
+      },
+      {
+        "company": "Microsoft",
+        "ticker": "MSFT",
+        "sector": "Tech",
+        "subsidy_bn": 1.1,
+        "market_cap_bn": 3300.0
+      },
+      {
+        "company": "Walt Disney",
+        "ticker": "DIS",
+        "sector": "Media",
+        "subsidy_bn": 1.1,
+        "market_cap_bn": 180.0
+      },
+      {
+        "company": "Chevron",
+        "ticker": "CVX",
+        "sector": "Energy",
+        "subsidy_bn": 1.1,
+        "market_cap_bn": 300.0
+      },
+      {
+        "company": "Dow",
+        "ticker": "DOW",
+        "sector": "Chemicals",
+        "subsidy_bn": 1.0,
+        "market_cap_bn": 28.0
+      },
+      {
+        "company": "Steel Dynamics",
+        "ticker": "STLD",
+        "sector": "Materials",
+        "subsidy_bn": 0.7,
+        "market_cap_bn": 22.0
+      },
+      {
+        "company": "FedEx",
+        "ticker": "FDX",
+        "sector": "Logistics",
+        "subsidy_bn": 0.7,
+        "market_cap_bn": 55.0
+      },
+      {
+        "company": "Pfizer",
+        "ticker": "PFE",
+        "sector": "Pharma",
+        "subsidy_bn": 0.6,
+        "market_cap_bn": 150.0
+      }
+    ],
+    "by_sector": [
+      {
+        "sector": "Semiconductors",
+        "subsidy_bn": 33.9
+      },
+      {
+        "sector": "Aerospace & Defense",
+        "subsidy_bn": 15.9
+      },
+      {
+        "sector": "Autos",
+        "subsidy_bn": 11.7
+      },
+      {
+        "sector": "Tech",
+        "subsidy_bn": 7.4
+      },
+      {
+        "sector": "Energy",
+        "subsidy_bn": 5.2
+      },
+      {
+        "sector": "Materials",
+        "subsidy_bn": 2.5
+      },
+      {
+        "sector": "Conglomerate",
+        "subsidy_bn": 1.4
+      },
+      {
+        "sector": "Retail",
+        "subsidy_bn": 1.2
+      },
+      {
+        "sector": "Media",
+        "subsidy_bn": 1.1
+      },
+      {
+        "sector": "Chemicals",
+        "subsidy_bn": 1.0
+      },
+      {
+        "sector": "Logistics",
+        "subsidy_bn": 0.7
+      },
+      {
+        "sector": "Pharma",
+        "subsidy_bn": 0.6
+      }
+    ],
+    "total_subsidy_bn": 82.6,
+    "n_companies": 24,
+    "n_sectors": 12,
+    "default_value_multiple": 3.0,
+    "note": "Curated, illustrative set of major US-listed subsidy recipients; bailouts excluded."
+  },
   "us_adults": 258000000
 }
