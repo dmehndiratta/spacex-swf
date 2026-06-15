@@ -78,21 +78,39 @@ draw();
 # ---------------------------------------------------------------- 6. Risk heatmap
 def d6_risk():
     rr = BUNDLE()["risk_register"]
-    data = {"items": rr["items"], "categories": rr["categories"]}
+    data = {"items": rr["items"], "categories": rr["categories"], "n": rr["n"]}
     body = f"""
 <div class="controls"><div class="ctrl-group"><span class="ctrl-label">Filter category</span>
   <div class="pill-row" id="pills"></div></div></div>
 <div class="metrics">
   <div class="metric"><span class="metric-label">Risks scored</span><span class="metric-value" id="m-n">—</span></div>
-  <div class="metric"><span class="metric-label">Mean severity</span><span class="metric-value" id="m-sev">—</span></div>
-  <div class="metric"><span class="metric-label">Top risk</span><span class="metric-value signal" id="m-top" style="font-size:.8rem">—</span></div>
+  <div class="metric"><span class="metric-label">Mean severity (of 25)</span><span class="metric-value" id="m-sev">—</span></div>
+  <div class="metric"><span class="metric-label">Highest-severity risk</span><span class="metric-value signal" id="m-top" style="font-size:.8rem">—</span></div>
 </div>
-<div class="plot-wrap"><div id="plot" style="height:420px"></div></div>
-<div class="footnote" style="border-top:none">Bubble position = likelihood × impact (1–5); size = severity.
-Hover for the rationale. Scores are analyst judgements (methods appendix).</div>
+<div class="plot-wrap"><div id="plot" style="height:430px"></div></div>
+<div class="footnote">How to read it: each dot is one risk. It sits further <b>right</b> the more likely it is, and
+<b>higher up</b> the more damage it would do. The shaded background runs from calm (bottom-left) to dangerous
+(top-right), so the risks that matter most are the big dots in the upper-right. Severity is just likelihood × impact,
+from 1 to 25. The scores are our own judgement, not market data — the table below gives the reasoning for each.</div>
+<table class="risk-table mono" id="risk-table">
+  <thead><tr><th>Risk</th><th>Category</th><th class="num">L</th><th class="num">I</th><th class="num">Sev</th><th>Why we scored it this way</th></tr></thead>
+  <tbody id="risk-rows"></tbody>
+</table>
+<style>
+.risk-table {{ width:100%; border-collapse:collapse; font-size:0.7rem; margin-top:4px; }}
+.risk-table th, .risk-table td {{ text-align:left; padding:5px 10px; border-bottom:1px solid {theme.BORDER}; vertical-align:top; }}
+.risk-table th {{ color:{theme.MIST}; text-transform:uppercase; letter-spacing:0.06em; font-size:0.6rem; border-bottom:1px solid {theme.SHADOW}; }}
+.risk-table td.num, .risk-table th.num {{ text-align:center; width:34px; }}
+.risk-table .sev {{ font-weight:600; }}
+.risk-table tr td:first-child {{ font-weight:600; color:{theme.VOID}; }}
+.risk-table .note {{ color:{theme.MIST}; }}
+</style>
 <script>
 const DATA = {json.dumps(data)};
 const PALETTE = ["{theme.SIGNAL}","{theme.VOID}","{theme.MIST}","#6B8E9E","#8C6A4A","#A8443B","#5B7553"];
+const SIGNAL="{theme.SIGNAL}", MIST="{theme.MIST}", GRID="{theme.GRID}";
+const LIKE = ['','rare','unlikely','possible','likely','almost certain'];
+const IMPACT = ['','minor','moderate','serious','severe','critical'];
 const cats = DATA.categories; let active = new Set(cats);
 const pills = document.getElementById('pills');
 cats.forEach((c,i)=>{{ const l=document.createElement('label'); l.className='pill on';
@@ -100,29 +118,43 @@ cats.forEach((c,i)=>{{ const l=document.createElement('label'); l.className='pil
   l.querySelector('input').addEventListener('change', e=>{{ if(e.target.checked){{active.add(c);l.classList.add('on');}}else{{active.delete(c);l.classList.remove('on');}} draw(); }});
   pills.appendChild(l); }});
 function jitter(v,i){{ return v + ((i%3)-1)*0.12; }}
+function sevColor(s){{ return s>=16? '#A8443B' : s>=9? SIGNAL : '#5B7553'; }}
+// background severity matrix (z = likelihood * impact), light wash so top-right reads "hot"
+const gx=[1,2,3,4,5], gy=[1,2,3,4,5];
+const gz = gy.map(j=>gx.map(i=>i*j));
 function draw(){{
   const shown = DATA.items.filter(d=>active.has(d.category));
   document.getElementById('m-n').textContent = shown.length;
   document.getElementById('m-sev').textContent = shown.length? (shown.reduce((a,b)=>a+b.severity,0)/shown.length).toFixed(1):'—';
   document.getElementById('m-top').textContent = shown.length? shown.slice().sort((a,b)=>b.severity-a.severity)[0].risk:'—';
-  const traces = cats.filter(c=>active.has(c)).map((c,ci)=>{{
+  const bg = {{type:'heatmap', x:gx, y:gy, z:gz, showscale:false, hoverinfo:'skip', opacity:0.28,
+    colorscale:[[0,'#EDE9E3'],[0.45,'#E7C9A0'],[1,'#A8443B']], zsmooth:'best'}};
+  const traces = [bg].concat(cats.filter(c=>active.has(c)).map((c)=>{{
     const items = shown.filter(d=>d.category===c);
     return {{x:items.map((d,i)=>jitter(d.likelihood,i)), y:items.map((d,i)=>jitter(d.impact,i)),
       mode:'markers', type:'scatter', name:c,
-      marker:{{size:items.map(d=>10+d.severity*1.6), color:PALETTE[cats.indexOf(c)%PALETTE.length], opacity:0.82, line:{{color:'#fff',width:1}}}},
-      text:items.map(d=>`<b>${{d.risk}}</b><br>${{d.category}}<br>L${{d.likelihood}}×I${{d.impact}} = sev ${{d.severity}}<br><span style="font-size:10px">${{d.note}}</span>`),
+      marker:{{size:items.map(d=>11+d.severity*1.5), color:PALETTE[cats.indexOf(c)%PALETTE.length], opacity:0.9, line:{{color:'#fff',width:1.5}}}},
+      text:items.map(d=>`<b>${{d.risk}}</b><br>${{d.category}}<br>likelihood ${{d.likelihood}}/5 (${{LIKE[d.likelihood]}}) × impact ${{d.impact}}/5 (${{IMPACT[d.impact]}}) = severity ${{d.severity}}<br><span style="font-size:10px">${{d.note}}</span>`),
       hovertemplate:'%{{text}}<extra></extra>'}};
-  }});
+  }}));
   Plotly.react('plot', traces, {{font:{{family:'IBM Plex Sans'}}, paper_bgcolor:'#fff', plot_bgcolor:'#EDE9E3',
-    margin:{{l:60,r:20,t:20,b:50}}, legend:{{font:{{size:9, family:'IBM Plex Mono'}}, orientation:'h', y:-0.18}},
-    xaxis:{{title:'Likelihood →', range:[0.5,5.5], dtick:1, gridcolor:'{theme.GRID}'}},
-    yaxis:{{title:'Impact →', range:[0.5,5.5], dtick:1, gridcolor:'{theme.GRID}'}}}},
+    margin:{{l:96,r:24,t:24,b:64}}, legend:{{font:{{size:9, family:'IBM Plex Mono'}}, orientation:'h', y:-0.22}},
+    xaxis:{{title:'How likely  →', range:[0.5,5.5], tickvals:[1,2,3,4,5], ticktext:LIKE.slice(1), gridcolor:GRID, tickfont:{{size:10}}}},
+    yaxis:{{title:'How damaging  →', range:[0.5,5.5], tickvals:[1,2,3,4,5], ticktext:IMPACT.slice(1), gridcolor:GRID, tickfont:{{size:10}}}},
+    annotations:[{{x:5,y:5,text:'most dangerous',showarrow:false,font:{{family:'IBM Plex Mono',size:9,color:'#A8443B'}},yshift:14}}]}},
     {{responsive:true, displayModeBar:false}});
+  // table, sorted by severity
+  const rows = shown.slice().sort((a,b)=>b.severity-a.severity).map(d=>
+    `<tr><td>${{d.risk}}</td><td class="note">${{d.category}}</td><td class="num">${{d.likelihood}}</td>`+
+    `<td class="num">${{d.impact}}</td><td class="num sev" style="color:${{sevColor(d.severity)}}">${{d.severity}}</td>`+
+    `<td class="note">${{d.note}}</td></tr>`).join('');
+  document.getElementById('risk-rows').innerHTML = rows;
 }}
 draw();
 </script>"""
     return "risk-heatmap.html", theme.page_html(
-        "Risk register — likelihood × impact", "16 risks across six categories; filter and hover for rationale",
+        "What could go wrong, and how much it would matter",
+        f"{rr['n']} risks, each scored on how likely it is and how much damage it would do",
         body, SRC)
 
 
