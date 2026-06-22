@@ -59,6 +59,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "No data changes this run — skipping push."
           else
-            git commit -m "data: weekly SpaceX-SWF refresh $(date -u +%Y-%m-%d) [skip ci]"
+            # No [skip ci]: the push must trigger Website's deploy.yml so the
+            # refreshed data actually rebuilds and ships to Cloudflare Pages.
+            git commit -m "data: weekly SpaceX-SWF refresh $(date -u +%Y-%m-%d)"
             git push
           fi
